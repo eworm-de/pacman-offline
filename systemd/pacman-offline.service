@@ -1,0 +1,14 @@
+[Unit]
+Description=Offline system update with pacman
+ConditionPathExists=/system-update
+DefaultDependencies=false
+Requires=sysinit.target dbus.socket
+After=sysinit.target dbus.socket
+Before=shutdown.target system-update.target
+OnFailure=reboot.target
+
+[Service]
+Type=oneshot
+StandardOutput=tty
+StandardError=tty
+ExecStart=/usr/lib/systemd/scripts/pacman-offline

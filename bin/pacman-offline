@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -e
+
+# download packages
+pacman -Suw --noconfirm
+
+# enable system update
+ln -sf /var/cache/pacman/pkg /system-update

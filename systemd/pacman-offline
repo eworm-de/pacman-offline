@@ -1,0 +1,17 @@
+#!/bin/sh
+
+set -e
+
+# verify this is for us or exit gracefully
+if [ "$(readlink '/system-update')" != '/var/cache/pacman/pkg' ]; then
+	exit 0
+fi
+
+# install updates
+pacman -Su --noconfirm
+
+# remove triggering symlink
+rm -f /system-update
+
+# reboot
+systemctl reboot
