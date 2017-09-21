@@ -1,6 +1,6 @@
 [Unit]
 Description=Offline system update with pacman
-ConditionPathExists=/system-update
+ConditionPathIsSymbolicLink=/system-update
 DefaultDependencies=false
 Requires=sysinit.target dbus.socket
 After=sysinit.target dbus.socket
