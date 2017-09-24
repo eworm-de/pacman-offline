@@ -2,6 +2,25 @@
 
 set -e
 
+function help() {
+	echo "usage: ${0} [OPTIONS]"
+	echo
+	echo ' -h  this help'
+	echo ' -y  update sync databases'
+}
+
+while getopts 'hy' opt; do
+	case ${opt} in
+		h)
+			help
+			exit 0
+			;;
+		y)
+			pacman -Sy
+			;;
+	esac
+done
+
 # check for available updates
 if ! pacman -Qu >/dev/null; then
 	echo "No updates available."
