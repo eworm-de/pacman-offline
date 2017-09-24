@@ -2,6 +2,12 @@
 
 set -e
 
+# check for available updates
+if ! pacman -Qu >/dev/null; then
+	echo "No updates available."
+	exit 0
+fi
+
 # download packages
 pacman -Suw --noconfirm
 
