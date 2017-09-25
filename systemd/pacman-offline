@@ -7,11 +7,11 @@ if [ "$(readlink '/system-update')" != '/var/cache/pacman/pkg' ]; then
 	exit 0
 fi
 
-# install updates
-pacman -Su --noconfirm
-
 # remove triggering symlink
 rm -f /system-update
+
+# install updates
+pacman -Su --noconfirm
 
 # reboot
 systemctl reboot
