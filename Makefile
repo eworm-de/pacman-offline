@@ -5,6 +5,10 @@ MD	:= markdown
 RM	:= rm
 SED	:= sed
 
+# this is just a fallback in case you do not
+# use git but downloaded a release tarball...
+VERSION := 0.0.1
+
 all: README.html
 
 %.html: %.md
@@ -22,3 +26,7 @@ install:
 
 clean:
 	$(RM) -f README.html
+
+release:
+	git archive --format=tar.xz --prefix=pacman-offline-$(VERSION)/ $(VERSION) > pacman-offline-$(VERSION).tar.xz
+	gpg -ab pacman-offline-$(VERSION).tar.xz
