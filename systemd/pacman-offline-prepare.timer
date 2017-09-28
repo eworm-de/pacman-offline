@@ -1,0 +1,9 @@
+[Unit]
+Description=Prepare pacman offline system-update
+
+[Timer]
+OnBootSec=5min
+OnUnitActiveSec=1d
+
+[Install]
+WantedBy=timers.target
