@@ -13,5 +13,8 @@ rm -f /system-update
 # install updates
 pacman -Su --noconfirm
 
+# clean up package cache
+pacman -Sc --noconfirm
+
 # reboot
 systemctl reboot
