@@ -22,7 +22,7 @@ while getopts 'hy' opt; do
 done
 
 # check for available updates
-if ! pacman -Qu >/dev/null; then
+if [ "$(pacman -Qu | grep -v '\[ignored\]' | wc -l)" -eq 0 ]; then
 	echo "No updates available."
 	exit 0
 fi
