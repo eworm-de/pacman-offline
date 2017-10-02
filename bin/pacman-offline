@@ -26,7 +26,7 @@ while getopts 'fhy' opt; do
 done
 
 # make sure no other update is pending
-if [ "$(readlink '/system-update')" != '/var/cache/pacman/pkg' ]; then
+if [ -e '/system-update' -a "$(readlink '/system-update')" != '/var/cache/pacman/pkg' ]; then
 	echo 'Another update is pending.' >&2
 	exit 1
 fi
