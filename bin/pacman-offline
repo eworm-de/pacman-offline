@@ -5,12 +5,16 @@ set -e
 function help() {
 	echo "usage: ${0} [OPTIONS]"
 	echo
+	echo ' -f  force if other system-update is pending'
 	echo ' -h  this help'
 	echo ' -y  update sync databases'
 }
 
-while getopts 'hy' opt; do
+while getopts 'fhy' opt; do
 	case ${opt} in
+		f)
+			rm -f /system-update
+			;;
 		h)
 			help
 			exit 0
