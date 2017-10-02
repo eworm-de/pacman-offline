@@ -21,6 +21,12 @@ while getopts 'hy' opt; do
 	esac
 done
 
+# make sure no other update is pending
+if [ "$(readlink '/system-update')" != '/var/cache/pacman/pkg' ]; then
+	echo 'Another update is pending.' >&2
+	exit 1
+fi
+
 # remove the symlink for now, will be recreated it later
 rm -f /system-update
 
