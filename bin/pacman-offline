@@ -21,6 +21,9 @@ while getopts 'hy' opt; do
 	esac
 done
 
+# remove the symlink for now, will be recreated it later
+rm -f /system-update
+
 # check for available updates
 if [ "$(pacman -Qu | grep -v '\[ignored\]' | wc -l)" -eq 0 ]; then
 	echo "No updates available."
