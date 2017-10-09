@@ -1,5 +1,6 @@
 [Unit]
 Description=Prepare pacman offline system-update
+ConditionPathExists=!/var/lib/pacman/db.lck
 
 [Timer]
 OnBootSec=5min
