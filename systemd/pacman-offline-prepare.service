@@ -5,7 +5,7 @@ ConditionPathExists=!/var/lib/pacman/db.lck
 [Service]
 Type=oneshot
 ExecStart=/usr/bin/pacman-offline -y
-ExecStopPost=/usr/bin/rm -f /var/lib/pacman/db.lck
+KillSignal=SIGINT
 ProtectSystem=on
 ProtectHome=on
 PrivateDevices=on
