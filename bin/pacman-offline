@@ -35,7 +35,8 @@ fi
 rm -f /system-update
 
 # check for available updates
-if [ "$(pacman -Qu | grep -v '\[ignored\]' | wc -l)" -eq 0 ]; then
+# TODO: remove the grep once a pacman release includes commit ee960048
+if [ "$(pacman -Sup | grep -v '^:: ' | wc -l)" -eq 0 ]; then
 	echo "No updates available."
 	exit 0
 fi
