@@ -30,3 +30,4 @@ clean:
 release:
 	git archive --format=tar.xz --prefix=pacman-offline-$(VERSION)/ $(VERSION) > pacman-offline-$(VERSION).tar.xz
 	gpg -ab pacman-offline-$(VERSION).tar.xz
+	git notes --ref=refs/notes/signatures/tar add -C $$(git archive --format=tar --prefix=pacman-offline-$(VERSION)/ $(VERSION) | gpg --armor --detach-sign | git hash-object -w --stdin) $(VERSION)
