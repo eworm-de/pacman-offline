@@ -11,6 +11,7 @@ fi
 rm -f /system-update
 
 # install updates
+pacman -S --noconfirm --needed archlinux-keyring
 pacman -Su --noconfirm
 
 # clean up package cache
