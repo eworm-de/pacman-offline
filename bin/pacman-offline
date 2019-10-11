@@ -26,7 +26,7 @@ while getopts 'fhry' opt; do
 			REBOOT=1
 			;;
 		y)
-			pacman -Sy
+			pacman --sync --refresh
 			;;
 	esac
 done
@@ -41,13 +41,13 @@ fi
 rm -f /system-update
 
 # check for available updates
-if [ "$(pacman -Sup | wc -l)" -eq 0 ]; then
+if [ "$(pacman --sync --sysupgrade --print | wc -l)" -eq 0 ]; then
 	echo "No updates available."
 	exit 0
 fi
 
 # download packages
-pacman -Suw --noconfirm
+pacman --sync --noconfirm --sysupgrade --downloadonly
 
 # enable system update
 ln -sf /var/cache/pacman/pkg /system-update

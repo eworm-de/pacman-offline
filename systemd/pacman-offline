@@ -11,11 +11,11 @@ fi
 rm -f /system-update
 
 # install updates
-pacman -S --noconfirm --needed archlinux-keyring
-pacman -Su --noconfirm
+pacman --sync --noconfirm --needed archlinux-keyring
+pacman --sync --noconfirm --sysupgrade
 
 # clean up package cache
-pacman -Sc --noconfirm
+pacman --sync --noconfirm --clean
 
 # reboot
 systemctl reboot
