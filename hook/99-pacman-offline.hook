@@ -1,4 +1,5 @@
 [Trigger]
+Operation = Install
 Operation = Upgrade
 Operation = Remove
 Type = Package
