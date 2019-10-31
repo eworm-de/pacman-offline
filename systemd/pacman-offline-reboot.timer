@@ -1,6 +1,5 @@
 [Unit]
 Description=Reboot for pacman offline system-update
-ConditionPathExists=/system-update
 
 [Timer]
 OnCalendar=03:00:00
