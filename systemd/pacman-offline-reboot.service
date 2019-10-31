@@ -1,0 +1,7 @@
+[Unit]
+Description=Reboot for pacman offline system-update
+ConditionPathExists=/system-update
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/systemctl reboot
