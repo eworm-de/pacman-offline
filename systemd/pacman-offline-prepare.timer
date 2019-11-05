@@ -3,7 +3,8 @@ Description=Prepare pacman offline system-update
 
 [Timer]
 OnBootSec=5min
-OnUnitActiveSec=1d
+OnCalendar=02:00:00
+RandomizedDelaySec=45minutes
 
 [Install]
 WantedBy=timers.target
