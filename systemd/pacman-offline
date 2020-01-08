@@ -11,7 +11,9 @@ fi
 rm -f /system-update
 
 # install updates
-pacman --sync --noconfirm --needed archlinux-keyring
+if [ "$(pacman --sync  --print --needed archlinux-keyring | wc -l)" -gt 0 ]; then
+	pacman --sync --noconfirm --needed archlinux-keyring
+fi
 pacman --sync --noconfirm --sysupgrade
 
 # clean up package cache
