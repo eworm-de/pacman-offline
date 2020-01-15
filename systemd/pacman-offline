@@ -12,7 +12,7 @@ rm -f /system-update
 
 # install updates
 if [ "$(pacman --sync  --print --needed archlinux-keyring | wc -l)" -gt 0 ]; then
-	pacman --sync --noconfirm --needed archlinux-keyring
+	pacman --sync --noconfirm archlinux-keyring
 fi
 pacman --sync --noconfirm --sysupgrade
 
