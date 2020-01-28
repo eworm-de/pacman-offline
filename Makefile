@@ -17,6 +17,7 @@ all: README.html
 
 install:
 	$(INSTALL) -D -m0755 bin/pacman-offline $(DESTDIR)/usr/bin/pacman-offline
+	$(INSTALL) -D -m0644 config/offline.conf $(DESTDIR)/etc/pacman.d/offline.conf
 	$(INSTALL) -D -m0644 hook/99-pacman-offline.hook $(DESTDIR)/usr/share/libalpm/hooks/99-pacman-offline.hook
 	$(INSTALL) -D -m0644 systemd/pacman-offline.service $(DESTDIR)/usr/lib/systemd/system/pacman-offline.service
 	$(INSTALL) -D -m0755 systemd/pacman-offline $(DESTDIR)/usr/lib/systemd/scripts/pacman-offline

@@ -7,6 +7,11 @@ if [ "$(readlink '/system-update')" != '/var/cache/pacman/pkg' ]; then
 	exit 0
 fi
 
+# exclude /etc/pacman.d/offline.conf
+function finish { rm -f /run/pacman.conf; }
+trap finish EXIT
+sed '/^Include *= *\/etc\/pacman\.d\/offline\.conf$/s|^|#|' < /etc/pacman.conf > /run/pacman.conf
+
 # remove triggering symlink
 rm -f /system-update
 
@@ -14,7 +19,7 @@ rm -f /system-update
 if [ "$(pacman --sync  --print --needed archlinux-keyring | wc -l)" -gt 0 ]; then
 	pacman --sync --noconfirm archlinux-keyring
 fi
-pacman --sync --noconfirm --sysupgrade
+pacman --config /run/pacman.conf --sync --noconfirm --sysupgrade
 
 # clean up package cache
 pacman --sync --noconfirm --clean
