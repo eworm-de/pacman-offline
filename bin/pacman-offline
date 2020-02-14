@@ -8,12 +8,14 @@ function help() {
 	echo ' -f  force if other system-update is pending'
 	echo ' -h  this help'
 	echo ' -r  reboot and install immediately'
+	echo ' -t  start timer for nightly reboot'
 	echo ' -y  update sync databases'
 }
 
 REBOOT=0
+TIMER=0
 
-while getopts 'fhry' opt; do
+while getopts 'fhrty' opt; do
 	case ${opt} in
 		f)
 			rm -f /system-update
@@ -24,6 +26,9 @@ while getopts 'fhry' opt; do
 			;;
 		r)
 			REBOOT=1
+			;;
+		t)
+			TIMER=1
 			;;
 		y)
 			pacman --sync --refresh
@@ -60,4 +65,7 @@ ln -sf /var/cache/pacman/pkg /system-update
 # reboot if requested
 if [ ${REBOOT} -eq 1 ]; then
 	systemctl reboot
+# start timer if requested
+elif [ ${TIMER} -eq 1 ]; then
+	systemctl start pacman-offline-reboot.timer
 fi
