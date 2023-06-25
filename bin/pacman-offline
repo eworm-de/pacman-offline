@@ -20,7 +20,7 @@ TIMER=0
 while getopts 'cfhrty' opt; do
 	case ${opt} in
 		c)
-			if pacconf 'CleanMethod' | grep -q 'KeepCurrent'; then
+			if pacman-conf 'CleanMethod' | grep -q 'KeepCurrent'; then
 				CLEAN=1
 			else
 				echo 'The clean method is not set to keep current. Not cleaning.' >&2
