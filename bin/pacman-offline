@@ -6,17 +6,22 @@ function help() {
 	echo "usage: ${0} [OPTIONS]"
 	echo
 	echo ' -f  force if other system-update is pending'
+	echo ' -c  clean before download'
 	echo ' -h  this help'
 	echo ' -r  reboot and install immediately'
 	echo ' -t  start timer for nightly reboot'
 	echo ' -y  update sync databases'
 }
 
+CLEAN=0
 REBOOT=0
 TIMER=0
 
-while getopts 'fhrty' opt; do
+while getopts 'cfhrty' opt; do
 	case ${opt} in
+		c)
+			CLEAN=1
+			;;
 		f)
 			rm -f /system-update
 			;;
@@ -54,6 +59,11 @@ rm -f /system-update
 if [ "$(pacman --config /run/pacman.conf --sync --sysupgrade --print | wc -l)" -eq 0 ]; then
 	echo "No updates available."
 	exit 0
+fi
+
+# clean cache
+if [ ${CLEAN} -eq 1 ]; then
+	pacman --sync --noconfirm --clean
 fi
 
 # download packages
