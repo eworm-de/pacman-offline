@@ -20,7 +20,11 @@ TIMER=0
 while getopts 'cfhrty' opt; do
 	case ${opt} in
 		c)
-			CLEAN=1
+			if pacconf 'CleanMethod' | grep -q 'KeepCurrent'; then
+				CLEAN=1
+			else
+				echo 'The clean method is not set to keep current. Not cleaning.' >&2
+			fi
 			;;
 		f)
 			rm -f /system-update
