@@ -4,4 +4,4 @@ ConditionPathExists=/system-update
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/systemctl reboot
+ExecStart=/usr/bin/systemctl soft-reboot

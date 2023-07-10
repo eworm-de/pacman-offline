@@ -78,7 +78,7 @@ ln -sf /var/cache/pacman/pkg /system-update
 
 # reboot if requested
 if [ ${REBOOT} -eq 1 ]; then
-	systemctl reboot
+	systemctl soft-reboot
 # start timer if requested
 elif [ ${TIMER} -eq 1 ]; then
 	systemctl start pacman-offline-reboot.timer
