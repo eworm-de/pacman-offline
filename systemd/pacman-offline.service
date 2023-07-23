@@ -11,4 +11,6 @@ OnFailure=reboot.target
 Type=oneshot
 StandardOutput=tty
 StandardError=tty
+ExecStartPre=-/usr/bin/plymouth change-mode --updates
+ExecStartPre=-/usr/bin/plymouth system-update --progress=20
 ExecStart=/usr/lib/systemd/scripts/pacman-offline
