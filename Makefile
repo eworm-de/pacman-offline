@@ -15,7 +15,9 @@ all: README.html
 	$(MD) $< > $@
 	$(SED) -i 's/\(README[-[:alnum:]]*\).md/\1.html/g' $@
 
-install:
+install: install-bin install-doc
+
+install-bin:
 	$(INSTALL) -D -m0755 bin/pacman-offline $(DESTDIR)/usr/bin/pacman-offline
 	$(INSTALL) -D -m0644 config/offline.conf $(DESTDIR)/etc/pacman.d/offline.conf
 	$(INSTALL) -D -m0644 hook/99-pacman-offline.hook $(DESTDIR)/usr/share/libalpm/hooks/99-pacman-offline.hook
@@ -27,6 +29,10 @@ install:
 	$(INSTALL) -D -m0644 systemd/pacman-offline-reboot.timer $(DESTDIR)/usr/lib/systemd/system/pacman-offline-reboot.timer
 	$(INSTALL) -d -m0755 $(DESTDIR)/usr/lib/systemd/system/system-update.target.wants/
 	$(LN) -s ../pacman-offline.service $(DESTDIR)/usr/lib/systemd/system/system-update.target.wants/pacman-offline.service
+
+install-doc: README.html
+	$(INSTALL) -D -m0644 README.md $(DESTDIR)/usr/share/doc/pacman-offline/README.md
+	$(INSTALL) -D -m0644 README.html $(DESTDIR)/usr/share/doc/pacman-offline/README.html
 
 clean:
 	$(RM) -f README.html
