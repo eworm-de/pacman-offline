@@ -47,6 +47,19 @@ loading. These packages are not ignored on offline update.
 Modify `/etc/pacman.d/offline.conf` to your needs by changing or adding
 packages.
 
+License and warranty
+--------------------
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+[GNU General Public License](COPYING.md) for more details.
+
 ### Upstream
 
 URL:
