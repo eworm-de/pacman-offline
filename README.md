@@ -33,6 +33,24 @@ It accepts some arguments:
 * *-t*: start timer for nightly reboot
 * *-y*: update sync databases
 
+### Timer for preparation
+
+You can enable a timer to prepare the offline update automatically.
+
+    systemctl enable pacman-offline-prepare.timer
+
+This will trigger several minutes after boot, then ever day. The databases
+are synced, then packages are downloaded. The updates are installed when
+ever the system reboots.
+
+### Timer for nightly reboot
+
+You can enable a timer for nightly reboot:
+
+    systemctl enable pacman-offline-reboot.timer
+
+This will trigger at night, if updates are pending and prepared.
+
 Configuration
 -------------
 
