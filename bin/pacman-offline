@@ -86,8 +86,10 @@ ln -sf /var/cache/pacman/pkg /system-update
 # reboot if requested
 if [ ${REBOOT} -eq 1 ]; then
 	if systemctl --dry-run soft-reboot 2>/dev/null; then
+		echo "Soft-rebooting for update."
 		systemctl soft-reboot
 	else
+		echo "Rebooting for update."
 		systemctl reboot
 	fi
 # start timer if requested
