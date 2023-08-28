@@ -96,3 +96,6 @@ if [ ${REBOOT} -eq 1 ]; then
 elif [ ${TIMER} -eq 1 ]; then
 	systemctl start pacman-offline-reboot.timer
 fi
+
+# show the timer (if active)
+systemctl --quiet list-timers pacman-offline-reboot.timer
