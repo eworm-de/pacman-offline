@@ -98,4 +98,4 @@ elif [ ${TIMER} -eq 1 ]; then
 fi
 
 # show the timer (if active)
-systemctl --quiet list-timers pacman-offline-reboot.timer
+systemctl --quiet list-timers pacman-offline-prepare.timer pacman-offline-reboot.timer
