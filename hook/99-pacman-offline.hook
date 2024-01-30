@@ -8,4 +8,4 @@ Target = *
 [Action]
 Description = Disabling scheduled pacman offline update...
 When = PostTransaction
-Exec = /usr/bin/rm -fv /system-update
+Exec = /usr/bin/rm -fv /system-update /run/systemd/system/systemd-reboot.service

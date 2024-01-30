@@ -19,8 +19,9 @@ function finish { rm -f /run/pacman.conf; }
 trap finish EXIT
 sed '/^Include *= *\/etc\/pacman\.d\/offline\.conf$/s|^|#|' < /etc/pacman.conf > /run/pacman.conf
 
-# remove triggering symlink
+# remove triggering symlink and (soft-)reboot override
 rm -f /system-update
+rm -f /run/systemd/system/systemd-reboot.service
 
 # install updates
 if [ "$(pacman --sync  --print --needed archlinux-keyring | wc -l)" -gt 0 ]; then
