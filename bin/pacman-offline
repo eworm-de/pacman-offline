@@ -26,6 +26,16 @@ TIMER=0
 
 while getopts 'cfhrty' opt; do
 	case ${opt} in
+		h)
+			help
+			exit 0
+			;;
+	esac
+done
+
+OPTIND=1
+while getopts 'cfhrty' opt; do
+	case ${opt} in
 		c)
 			if pacman-conf 'CleanMethod' | grep -q 'KeepCurrent'; then
 				CLEAN=1
@@ -35,10 +45,6 @@ while getopts 'cfhrty' opt; do
 			;;
 		f)
 			rm -f /system-update
-			;;
-		h)
-			help
-			exit 0
 			;;
 		r)
 			REBOOT=1
