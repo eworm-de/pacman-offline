@@ -33,6 +33,11 @@ while getopts 'cfhrty' opt; do
 	esac
 done
 
+if [ "${UID}" -ne 0 ]; then
+	echo "You need elevated privileges. Please run as user 'root'!" >&2
+	exit 1
+fi
+
 OPTIND=1
 while getopts 'cfhrty' opt; do
 	case ${opt} in
