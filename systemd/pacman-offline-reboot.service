@@ -6,9 +6,9 @@
 # (at your option) any later version.
 
 [Unit]
-Description=Reboot for pacman offline system-update
+Description=Soft-reboot for pacman offline system-update
 ConditionPathExists=/system-update
 
 [Service]
 Type=oneshot
-ExecStart=/bin/sh -c "if systemctl --dry-run soft-reboot 2>/dev/null; then systemctl soft-reboot; else systemctl reboot; fi"
+ExecStart=/usr/bin/systemctl soft-reboot

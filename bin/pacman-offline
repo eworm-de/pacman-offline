@@ -99,17 +99,12 @@ pacman --config /run/pacman.conf --sync --noconfirm --sysupgrade --downloadonly
 # enable system update
 ln -sf /var/cache/pacman/pkg /system-update
 
-# reboot if requested
+# (soft-)reboot if requested
 if [ ${REBOOT} -eq 1 ]; then
-	if systemctl --dry-run soft-reboot 2>/dev/null; then
-		echo "Soft-rebooting for update."
-		systemctl soft-reboot
-	else
-		echo "Rebooting for update."
-		systemctl reboot
-	fi
+	echo "Soft-rebooting for update."
+	systemctl soft-reboot
 # force a soft-reboot on (manual) reboot
-elif [ -e /usr/lib/systemd/system/systemd-soft-reboot.service ]; then
+else
 	ln -sf ../../../usr/lib/systemd/system/systemd-soft-reboot.service /run/systemd/system/systemd-reboot.service
 	systemctl daemon-reload
 fi
