@@ -4,7 +4,7 @@ pacman-offline
 **Run offline system update with pacman.**
 
 The offline system update with pacman is achieved by integrating into
-[offline updates in systemd](https://www.freedesktop.org/software/systemd/man/systemd.offline-updates.html#/etc/system-update).
+[offline updates in systemd](https://www.freedesktop.org/software/systemd/man/systemd.offline-updates.html).
 In fact only two scripts and a number of systemd unit files are used to
 glue `systemd` and `pacman`.
 
