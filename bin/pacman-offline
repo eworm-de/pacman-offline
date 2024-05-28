@@ -12,8 +12,8 @@ set -e
 function help() {
 	echo "usage: ${0} [OPTIONS]"
 	echo
-	echo ' -f  force if other system-update is pending'
 	echo ' -c  clean before download'
+	echo ' -f  force if other system-update is pending'
 	echo ' -h  this help'
 	echo ' -r  reboot and install immediately'
 	echo ' -t  start timer for nightly reboot'
