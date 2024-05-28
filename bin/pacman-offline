@@ -15,16 +15,18 @@ function help() {
 	echo ' -c  clean before download'
 	echo ' -f  force if other system-update is pending'
 	echo ' -h  this help'
+	echo ' -p  reboot, install and poweroff immediately'
 	echo ' -r  reboot and install immediately'
 	echo ' -t  start timer for nightly reboot'
 	echo ' -y  update sync databases'
 }
 
 CLEAN=0
+POWEROFF=0
 REBOOT=0
 TIMER=0
 
-while getopts 'cfhrty' opt; do
+while getopts 'cfhprty' opt; do
 	case ${opt} in
 		h)
 			help
@@ -44,7 +46,7 @@ if [ "${UID}" -ne 0 ]; then
 fi
 
 OPTIND=1
-while getopts 'cfhrty' opt; do
+while getopts 'cfhprty' opt; do
 	case ${opt} in
 		c)
 			if pacman-conf 'CleanMethod' | grep -q 'KeepCurrent'; then
@@ -55,6 +57,10 @@ while getopts 'cfhrty' opt; do
 			;;
 		f)
 			rm -f /system-update
+			;;
+		p)
+			POWEROFF=1
+			REBOOT=1
 			;;
 		r)
 			REBOOT=1
@@ -98,6 +104,9 @@ pacman --config /run/pacman.conf --sync --noconfirm --sysupgrade --downloadonly
 
 # enable system update
 ln -sf /var/cache/pacman/pkg /system-update
+if [ ${POWEROFF} -eq 1 ]; then
+	touch /run/system-update-poweroff
+fi
 
 # (soft-)reboot if requested
 if [ ${REBOOT} -eq 1 ]; then

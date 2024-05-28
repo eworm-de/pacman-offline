@@ -29,6 +29,7 @@ It accepts some arguments:
 * *-c*: clean before download
 * *-f*: force if other system-update is pending
 * *-h*: show help
+* *-p*: reboot, install and poweroff immediately
 * *-r*: reboot and install immediately
 * *-t*: start timer for nightly reboot
 * *-y*: update sync databases
