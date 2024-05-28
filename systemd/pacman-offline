@@ -19,8 +19,9 @@ function finish { rm -f /run/pacman.conf; }
 trap finish EXIT
 sed '/^Include *= *\/etc\/pacman\.d\/offline\.conf$/s|^|#|' < /etc/pacman.conf > /run/pacman.conf
 
-# remove triggering symlink and (soft-)reboot override
+# remove triggering symlink and reboot & poweroff override
 rm -f /system-update
+rm -f /run/systemd/system/systemd-poweroff.service
 rm -f /run/systemd/system/systemd-reboot.service
 
 # install updates

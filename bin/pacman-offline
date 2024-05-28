@@ -112,9 +112,18 @@ fi
 if [ ${REBOOT} -eq 1 ]; then
 	echo "Soft-rebooting for update."
 	systemctl soft-reboot
-# force a soft-reboot on (manual) reboot
 else
+	# force a soft-reboot on (manual) reboot ...
 	ln -sf ../../../usr/lib/systemd/system/systemd-soft-reboot.service /run/systemd/system/systemd-reboot.service
+
+	# ... and also on poweroff, but prepare poweroff
+	cp /usr/lib/systemd/system/systemd-soft-reboot.service /run/systemd/system/systemd-poweroff.service 
+	cat >> /run/systemd/system/systemd-poweroff.service <<-EOF
+
+	[Service]
+	ExecStart=/usr/bin/touch /run/system-update-poweroff
+	EOF
+
 	systemctl daemon-reload
 fi
 
