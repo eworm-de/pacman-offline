@@ -24,7 +24,7 @@ rm -f /system-update
 rm -f /run/systemd/system/systemd-reboot.service
 
 # install updates
-if [ "$(pacman --sync  --print --needed archlinux-keyring | wc -l)" -gt 0 ]; then
+if [ "$(pacman --sync --print --needed archlinux-keyring | wc -l)" -gt 0 ]; then
 	pacman --sync --noconfirm archlinux-keyring
 fi
 pacman --config /run/pacman.conf --sync --noconfirm --sysupgrade
