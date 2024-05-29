@@ -20,9 +20,10 @@ trap finish EXIT
 sed '/^Include *= *\/etc\/pacman\.d\/offline\.conf$/s|^|#|' < /etc/pacman.conf > /run/pacman.conf
 
 # remove triggering symlink and reboot & poweroff override
-rm -f /system-update
-rm -f /run/systemd/system/systemd-poweroff.service
-rm -f /run/systemd/system/systemd-reboot.service
+rm --force \
+	/system-update \
+	/run/systemd/system/systemd-poweroff.service \
+	/run/systemd/system/systemd-reboot.service
 
 # install updates
 if [ "$(pacman --sync --print --needed archlinux-keyring | wc -l)" -gt 0 ]; then
