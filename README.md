@@ -38,6 +38,16 @@ It accepts some arguments:
 * *-t*: start timer for nightly reboot
 * *-y*: update sync databases
 
+### Elevating privileges
+
+The privileges are elevated automatically if `polkit` is installed. This works
+with no authentication if your user is member of the group `wheel`. To add your
+user to that group run:
+
+    usermod --append --groups wheel user
+
+If your user is not member of that group you will be asked for a password.
+
 ### Timer for preparation
 
 You can enable a timer to prepare the offline update automatically.

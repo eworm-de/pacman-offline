@@ -1,0 +1,11 @@
+/* Allow members of the wheel group to run pacman-offline */
+
+polkit.addRule(
+	function(action, subject) {
+		if (action.id == "org.freedesktop.policykit.exec" &&
+		    action.lookup("program") == "/usr/bin/pacman-offline" &&
+		    subject.isInGroup("wheel")) {
+			return polkit.Result.YES;
+		}
+	}
+);
