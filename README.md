@@ -16,6 +16,10 @@ There are the runtime dependencies:
 * [pacman](https://archlinux.org/pacman/)
 * [systemd](https://www.github.com/systemd/systemd)
 
+And there's an optional dependency to support elevating privileges:
+
+* [polkit](https://github.com/polkit-org/polkit)
+
 Optional basic support for
 [plymouth](https://www.freedesktop.org/wiki/Software/Plymouth/) is
 integrated.

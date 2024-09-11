@@ -36,9 +36,9 @@ while getopts 'cfhprty' opt; do
 done
 
 if [ "${UID}" -ne 0 ]; then
-	if command -v run0 >/dev/null; then
+	if command -v pkexec >/dev/null; then
 		echo 'Missing privileges, trying to elevate.' >&2
-		exec run0 "${0}" "${@}"
+		exec pkexec "${0}" "${@}"
 	fi
 
 	echo "You need elevated privileges. Please run as user 'root'!" >&2
