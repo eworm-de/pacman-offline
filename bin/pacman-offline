@@ -12,6 +12,7 @@ set -e
 function help() {
 	echo "usage: ${0} [OPTIONS]"
 	echo
+	echo ' -a  abort pending system-update'
 	echo ' -c  clean before download'
 	echo ' -f  force if other system-update is pending'
 	echo ' -h  this help'
@@ -26,13 +27,13 @@ POWEROFF=0
 REBOOT=0
 TIMER=0
 
-while getopts 'cfhprty' opt; do
+while getopts 'acfhprty' opt; do
 	case ${opt} in
 		h)
 			help
 			exit 0
 			;;
-		c|f|p|r|t|y)
+		a|c|f|p|r|t|y)
 			;;
 		*)
 			exit 1
@@ -51,8 +52,16 @@ if [ "${UID}" -ne 0 ]; then
 fi
 
 OPTIND=1
-while getopts 'cfhprty' opt; do
+while getopts 'acfhprty' opt; do
 	case ${opt} in
+		a)
+			rm --force \
+				/system-update \
+				/run/systemd/system/systemd-poweroff.service \
+				/run/systemd/system/systemd-reboot.service
+			systemctl daemon-reload
+			exit 0
+			;;
 		c)
 			if pacman-conf 'CleanMethod' | grep -q 'KeepCurrent'; then
 				CLEAN=1

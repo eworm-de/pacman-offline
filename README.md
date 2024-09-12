@@ -30,6 +30,7 @@ Usage
 A single command `pacman-offline` is used to prepare the offline update.
 It accepts some arguments:
 
+* *-a*: abort pending system-update
 * *-c*: clean before download
 * *-f*: force if other system-update is pending
 * *-h*: show help
