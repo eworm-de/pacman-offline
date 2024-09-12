@@ -6,6 +6,6 @@ Type = Package
 Target = *
 
 [Action]
-Description = Disabling scheduled pacman offline update...
+Description = Abort pending pacman offline system-update...
 When = PostTransaction
 Exec = /usr/bin/pacman-offline -a
