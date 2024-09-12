@@ -41,6 +41,11 @@ while getopts 'acfhprty' opt; do
 	esac
 done
 
+if systemd-detect-virt --chroot; then
+	echo 'Running in chroot, skipping.' >&2
+	exit 0
+fi
+
 if [ "${UID}" -ne 0 ]; then
 	if command -v pkexec >/dev/null; then
 		echo 'Missing privileges, trying to elevate.' >&2
