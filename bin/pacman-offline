@@ -32,6 +32,11 @@ while getopts 'cfhprty' opt; do
 			help
 			exit 0
 			;;
+		c|f|p|r|t|y)
+			;;
+		*)
+			exit 1
+			;;
 	esac
 done
 
