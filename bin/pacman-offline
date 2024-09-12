@@ -46,6 +46,11 @@ if systemd-detect-virt --chroot; then
 	exit 0
 fi
 
+if [ ! -d /run/systemd/system ]; then
+	echo 'Current root is not booted, skipping.' >&2
+	exit 0
+fi
+
 if [ "${UID}" -ne 0 ]; then
 	if command -v pkexec >/dev/null; then
 		echo 'Missing privileges, trying to elevate.' >&2
