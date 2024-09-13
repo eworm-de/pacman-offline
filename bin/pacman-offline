@@ -41,7 +41,7 @@ while getopts 'acfhprty' opt; do
 	esac
 done
 
-if systemd-detect-virt --chroot; then
+if systemd-detect-virt --chroot 2>/dev/null; then
 	echo 'Running in chroot, skipping.' >&2
 	exit 0
 fi
