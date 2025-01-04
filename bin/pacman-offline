@@ -109,6 +109,7 @@ function finish { rm -f /run/pacman.conf; }
 trap finish EXIT
 sed \
 	-e '/^Include *= *\/etc\/pacman\.d\/offline\.conf$/s|^|#|' \
+	-e '/^#Include *= *\/etc\/pacman\.d\/offline-include\.conf$/s|^#||' \
 	< /etc/pacman.conf > /run/pacman.conf
 
 # remove the symlink for now, will be recreated it later

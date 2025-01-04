@@ -70,16 +70,21 @@ This will trigger at night, if updates are pending and prepared.
 Configuration
 -------------
 
-A sinppet for inclusion in `/etc/pacman.conf` is shipped. To make use of
-it add this line:
+Two sinppets for inclusion in `/etc/pacman.conf` are shipped. To make use of
+them add these line:
 
     Include = /etc/pacman.d/offline.conf
+    #Include = /etc/pacman.d/offline-include.conf
 
-It will cause `pacman` to ignore linux packages and prevent breaking module
-loading. These packages are not ignored on offline update.
+The first one will cause `pacman` to ignore linux packages and prevent
+breaking module loading and hibernation. These packages are not ignored
+on offline update.
 
-Modify `/etc/pacman.d/offline.conf` to your needs by changing or adding
-packages.
+The second one has the opposite effect, it is included on offline action
+only.
+
+Modify `/etc/pacman.d/offline.conf` and `/etc/pacman.d/offline-include.conf`
+to your needs by changing or adding packages, or adding new directives.
 
 License and warranty
 --------------------
