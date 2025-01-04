@@ -17,7 +17,9 @@ fi
 # exclude /etc/pacman.d/offline.conf
 function finish { rm -f /run/pacman.conf; }
 trap finish EXIT
-sed '/^Include *= *\/etc\/pacman\.d\/offline\.conf$/s|^|#|' < /etc/pacman.conf > /run/pacman.conf
+sed \
+	-e '/^Include *= *\/etc\/pacman\.d\/offline\.conf$/s|^|#|' \
+	< /etc/pacman.conf > /run/pacman.conf
 
 # remove triggering symlink and reboot & poweroff override
 rm --force \
