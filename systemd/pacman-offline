@@ -34,6 +34,10 @@ if [ "$(pacman --sync --print --needed archlinux-keyring | wc -l)" -gt 0 ]; then
 fi
 pacman --config /run/pacman.conf --sync --noconfirm --sysupgrade
 
+# clean up config file, drop trap
+rm -f /run/pacman.conf
+trap - EXIT
+
 # clean up package cache
 pacman --sync --noconfirm --clean
 
