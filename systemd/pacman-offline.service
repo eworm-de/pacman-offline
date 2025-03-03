@@ -16,8 +16,12 @@ OnFailure=reboot.target
 
 [Service]
 Type=oneshot
+# Pretty print to tty...
 StandardOutput=tty
 StandardError=tty
+# ... or use this for debugging - less pretty, but with output in journal.
+#StandardOutput=journal+console
+#StandardError=journal+console
 ExecStartPre=-/usr/bin/plymouth change-mode --updates
 ExecStartPre=-/usr/bin/plymouth system-update --progress=20
 ExecStart=/usr/lib/systemd/scripts/pacman-offline
