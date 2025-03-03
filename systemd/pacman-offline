@@ -43,9 +43,9 @@ pacman --sync --noconfirm --clean
 
 # poweroff or (soft-)reboot
 if [ -e '/run/system-update-poweroff' ]; then
-	systemctl poweroff
+	exec systemctl poweroff
 elif [ -s "/usr/lib/modules/$(uname -r)/pkgbase" ]; then
-	systemctl soft-reboot
+	exec systemctl soft-reboot
 else
-	systemctl reboot
+	exec systemctl reboot
 fi
