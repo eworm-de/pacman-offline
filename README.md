@@ -107,3 +107,6 @@ URL:
 Mirror:
 [eworm.de](https://git.eworm.de/cgit.cgi/pacman-offline/)
 [GitLab.com](https://gitlab.com/eworm-de/pacman-offline#pacman-offline)
+
+---
+[⬆️ Go back to top](#top)
