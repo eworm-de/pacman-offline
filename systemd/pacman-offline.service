@@ -11,7 +11,7 @@ ConditionPathIsSymbolicLink=/system-update
 DefaultDependencies=false
 Requires=sysinit.target dbus.socket
 After=sysinit.target dbus.socket
-Before=shutdown.target system-update.target
+Before=system-update.target
 OnFailure=reboot.target
 
 [Service]
