@@ -141,10 +141,12 @@ if [ ${REBOOT} -eq 1 ]; then
 	exec systemctl soft-reboot
 else
 	# force a soft-reboot on (manual) reboot ...
-	ln -sf ../../../usr/lib/systemd/system/systemd-soft-reboot.service /run/systemd/system/systemd-reboot.service
+	ln -sf ../../../usr/lib/systemd/system/systemd-soft-reboot.service \
+		/run/systemd/system/systemd-reboot.service
 
 	# ... and also on poweroff, but prepare poweroff
-	cp /usr/lib/systemd/system/systemd-soft-reboot.service /run/systemd/system/systemd-poweroff.service 
+	cp /usr/lib/systemd/system/systemd-soft-reboot.service \
+		/run/systemd/system/systemd-poweroff.service
 	cat >> /run/systemd/system/systemd-poweroff.service <<-EOF
 
 	[Service]
@@ -160,4 +162,6 @@ if [ ${TIMER} -eq 1 ]; then
 fi
 
 # show the timer (if active)
-systemctl --quiet --no-pager list-timers pacman-offline-prepare.timer pacman-offline-reboot.timer
+systemctl --quiet --no-pager list-timers \
+	pacman-offline-prepare.timer \
+	pacman-offline-reboot.timer
