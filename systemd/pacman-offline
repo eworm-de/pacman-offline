@@ -14,7 +14,7 @@ if [ "$(readlink '/system-update')" != '/var/cache/pacman/pkg' ]; then
 	exit 0
 fi
 
-# force the proper action on failure
+# force the proper action on failure, ...
 if [ -e '/run/pacman-offline-poweroff' ]; then
 	ln -sf ../../../usr/lib/systemd/system/poweroff.target \
 		/run/systemd/system/pacman-offline-failure.target
@@ -22,6 +22,11 @@ else
 	ln -sf ../../../usr/lib/systemd/system/reboot.target \
 		/run/systemd/system/pacman-offline-failure.target
 fi
+# ... remove triggering symlink and reboot & poweroff override
+rm --force \
+	/system-update \
+	/run/systemd/system/systemd-poweroff.service \
+	/run/systemd/system/systemd-reboot.service
 
 # exclude /etc/pacman.d/offline.conf
 function finish { rm -f /run/pacman.conf; }
@@ -30,12 +35,6 @@ sed \
 	-e '/^Include *= *\/etc\/pacman\.d\/offline\.conf$/s|^|#|' \
 	-e '/^#Include *= *\/etc\/pacman\.d\/offline-include\.conf$/s|^#||' \
 	< /etc/pacman.conf > /run/pacman.conf
-
-# remove triggering symlink and reboot & poweroff override
-rm --force \
-	/system-update \
-	/run/systemd/system/systemd-poweroff.service \
-	/run/systemd/system/systemd-reboot.service
 
 # install updates
 if [ "$(pacman --sync --print --needed archlinux-keyring | wc -l)" -gt 0 ]; then
