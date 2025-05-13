@@ -22,11 +22,13 @@ else
 	ln -sf ../../../usr/lib/systemd/system/reboot.target \
 		/run/systemd/system/pacman-offline-failure.target
 fi
-# ... remove triggering symlink and reboot & poweroff override
+# ... remove triggering symlink and reboot & poweroff override, ...
 rm --force \
 	/system-update \
 	/run/systemd/system/systemd-poweroff.service \
 	/run/systemd/system/systemd-reboot.service
+# ... and reload
+systemctl daemon-reload
 
 # exclude /etc/pacman.d/offline.conf
 function finish { rm -f /run/pacman.conf; }
