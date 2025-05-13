@@ -14,6 +14,15 @@ if [ "$(readlink '/system-update')" != '/var/cache/pacman/pkg' ]; then
 	exit 0
 fi
 
+# force the proper action on failure
+if [ -e '/run/pacman-offline-poweroff' ]; then
+	ln -sf ../../../usr/lib/systemd/system/poweroff.target \
+		/run/systemd/system/pacman-offline-failure.target
+else
+	ln -sf ../../../usr/lib/systemd/system/reboot.target \
+		/run/systemd/system/pacman-offline-failure.target
+fi
+
 # exclude /etc/pacman.d/offline.conf
 function finish { rm -f /run/pacman.conf; }
 trap finish EXIT

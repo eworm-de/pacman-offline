@@ -12,7 +12,7 @@ DefaultDependencies=false
 Requires=sysinit.target dbus.socket
 After=sysinit.target system-update-pre.target dbus.socket
 Before=system-update.target
-OnFailure=reboot.target
+OnFailure=pacman-offline-failure.target
 
 [Service]
 Type=oneshot
