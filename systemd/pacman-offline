@@ -42,7 +42,7 @@ trap - EXIT
 pacman --sync --noconfirm --clean
 
 # poweroff or (soft-)reboot
-if [ -e '/run/system-update-poweroff' ]; then
+if [ -e '/run/pacman-offline-poweroff' ]; then
 	exec systemctl poweroff
 elif [ -s "/usr/lib/modules/$(uname -r)/pkgbase" ]; then
 	exec systemctl soft-reboot

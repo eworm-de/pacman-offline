@@ -132,7 +132,7 @@ pacman --config /run/pacman.conf --sync --noconfirm --sysupgrade --downloadonly
 # enable system update
 ln -sf /var/cache/pacman/pkg /system-update
 if [ ${POWEROFF} -eq 1 ]; then
-	touch /run/system-update-poweroff
+	touch /run/pacman-offline-poweroff
 fi
 
 # (soft-)reboot if requested
@@ -150,7 +150,7 @@ else
 	cat >> /run/systemd/system/systemd-poweroff.service <<-EOF
 
 	[Service]
-	ExecStart=/usr/bin/touch /run/system-update-poweroff
+	ExecStart=/usr/bin/touch /run/pacman-offline-poweroff
 	EOF
 
 	systemctl daemon-reload
