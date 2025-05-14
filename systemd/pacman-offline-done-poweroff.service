@@ -1,0 +1,20 @@
+# (C) 2017-2025 by Christian Hesse <mail@eworm.de>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+
+[Unit]
+Description=Offline system update with pacman - Poweroff
+After=system-update.target
+DefaultDependencies=no
+Conflicts=shutdown.target
+Before=shutdown.target
+ConditionPathExists=/run/pacman-offline-poweroff
+SuccessAction=poweroff
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/rm --force /run/pacman-offline-poweroff
