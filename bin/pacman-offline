@@ -135,25 +135,26 @@ if [ ${POWEROFF} -eq 1 ]; then
 	touch /run/pacman-offline-poweroff
 fi
 
-# (soft-)reboot if requested
-if [ ${REBOOT} -eq 1 ]; then
-	echo "Soft-rebooting for update."
-	exec systemctl soft-reboot
-else
-	# force a soft-reboot on (manual) reboot ...
-	ln -sf ../../../usr/lib/systemd/system/systemd-soft-reboot.service \
-		/run/systemd/system/systemd-reboot.service
+# force a soft-reboot on (manual) reboot ...
+ln -sf ../../../usr/lib/systemd/system/systemd-soft-reboot.service \
+	/run/systemd/system/systemd-reboot.service
 
-	# ... and also on poweroff, but prepare poweroff
-	cp /usr/lib/systemd/system/systemd-soft-reboot.service \
-		/run/systemd/system/systemd-poweroff.service
-	cat >> /run/systemd/system/systemd-poweroff.service <<-EOF
+# ... and also on poweroff, but prepare poweroff
+cp /usr/lib/systemd/system/systemd-soft-reboot.service \
+	/run/systemd/system/systemd-poweroff.service
+cat >> /run/systemd/system/systemd-poweroff.service <<-EOF
 
 	[Service]
 	ExecStart=/usr/bin/touch /run/pacman-offline-poweroff
 	EOF
 
-	systemctl daemon-reload
+# reload for service changes
+systemctl daemon-reload
+
+# (soft-)reboot if requested
+if [ ${REBOOT} -eq 1 ]; then
+	echo 'Rebooting for update.'
+	exec systemctl reboot
 fi
 
 # start timer if requested
