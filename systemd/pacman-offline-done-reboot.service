@@ -12,9 +12,10 @@ After=pacman-offline.service
 DefaultDependencies=no
 Conflicts=shutdown.target
 Before=shutdown.target system-update.target
+ConditionPathExists=/run/pacman-offline-done
 ConditionPathExists=!/run/pacman-offline-poweroff
 SuccessAction=reboot
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/rm --force /run/systemd/system/systemd-reboot.service
+ExecStart=/usr/bin/rm --force /run/pacman-offline-done /run/systemd/system/systemd-reboot.service

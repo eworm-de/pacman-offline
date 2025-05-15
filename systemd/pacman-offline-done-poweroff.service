@@ -12,9 +12,10 @@ After=pacman-offline.service
 DefaultDependencies=no
 Conflicts=shutdown.target
 Before=shutdown.target system-update.target
+ConditionPathExists=/run/pacman-offline-done
 ConditionPathExists=/run/pacman-offline-poweroff
 SuccessAction=poweroff
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/rm --force /run/pacman-offline-poweroff
+ExecStart=/usr/bin/rm --force /run/pacman-offline-done /run/pacman-offline-poweroff

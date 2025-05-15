@@ -59,5 +59,6 @@ if [ ! -e '/run/pacman-offline-poweroff' -a \
 	systemctl daemon-reload
 fi
 
-# All done, just exit successfully!
+# All done, just touch a status file and exit successfully!
 # (Soft-)Reboot or Poweroff is done by specific units.
+touch /run/pacman-offline-done
