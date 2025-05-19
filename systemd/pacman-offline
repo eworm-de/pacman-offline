@@ -51,6 +51,9 @@ trap - EXIT
 # clean up package cache
 pacman --sync --noconfirm --clean
 
+# sync the storage
+sync
+
 # prepare for soft-reboot via override when applicable
 if [ ! -e '/run/pacman-offline-poweroff' -a \
      -s "/usr/lib/modules/$(uname -r)/pkgbase" ]; then
