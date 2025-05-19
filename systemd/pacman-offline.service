@@ -10,8 +10,9 @@ Description=Offline system update with pacman
 ConditionPathIsSymbolicLink=/system-update
 DefaultDependencies=false
 Requires=sysinit.target dbus.socket
+Wants=pacman-offline-done-poweroff.service pacman-offline-done-reboot.service
 After=sysinit.target system-update-pre.target dbus.socket
-Before=system-update.target
+Before=pacman-offline-done-poweroff.service pacman-offline-done-reboot.service system-update.target
 OnFailure=pacman-offline-failure.target
 
 [Service]

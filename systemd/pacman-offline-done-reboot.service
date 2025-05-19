@@ -8,10 +8,10 @@
 
 [Unit]
 Description=Offline system update with pacman - Reboot
-After=system-update.target
+After=pacman-offline.service
 DefaultDependencies=no
 Conflicts=shutdown.target
-Before=shutdown.target
+Before=shutdown.target system-update.target
 ConditionPathExists=!/run/pacman-offline-poweroff
 SuccessAction=reboot
 

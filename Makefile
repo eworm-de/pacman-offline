@@ -32,8 +32,6 @@ install-bin:
 	$(INSTALL) -D -m0644 systemd/pacman-offline-reboot.timer $(DESTDIR)/usr/lib/systemd/system/pacman-offline-reboot.timer
 	$(INSTALL) -d -m0755 $(DESTDIR)/usr/lib/systemd/system/system-update.target.wants/
 	$(LN) -s ../pacman-offline.service $(DESTDIR)/usr/lib/systemd/system/system-update.target.wants/pacman-offline.service
-	$(LN) -s ../pacman-offline-done-poweroff.service $(DESTDIR)/usr/lib/systemd/system/system-update.target.wants/pacman-offline-done-poweroff.service
-	$(LN) -s ../pacman-offline-done-reboot.service $(DESTDIR)/usr/lib/systemd/system/system-update.target.wants/pacman-offline-done-reboot.service
 
 install-doc: README.html
 	$(INSTALL) -D -m0644 README.md $(DESTDIR)/usr/share/doc/pacman-offline/README.md
