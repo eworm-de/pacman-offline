@@ -70,7 +70,7 @@ This will trigger at night, if updates are pending and prepared.
 Configuration
 -------------
 
-Two sinppets for inclusion in `/etc/pacman.conf` are shipped. To make use of
+Two snippets for inclusion in `/etc/pacman.conf` are shipped. To make use of
 them add these line:
 
     Include = /etc/pacman.d/offline.conf
