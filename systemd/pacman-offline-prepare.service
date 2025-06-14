@@ -9,6 +9,9 @@
 Description=Prepare pacman offline system-update
 Documentation=https://git.eworm.de/cgit/pacman-offline/about/
 ConditionPathExists=!/var/lib/pacman/db.lck
+# Synchronizing databases needs network, see https://systemd.io/NETWORK_ONLINE/
+After=network-online.target
+Wants=network-online.target
 
 [Service]
 Type=oneshot
