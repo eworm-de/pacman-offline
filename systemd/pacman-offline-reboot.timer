@@ -7,6 +7,7 @@
 
 [Unit]
 Description=Reboot for pacman offline system-update
+Documentation=https://git.eworm.de/cgit/pacman-offline/about/
 
 [Timer]
 OnCalendar=03:00:00
