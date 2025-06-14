@@ -7,7 +7,11 @@
 
 [Unit]
 Description=Prepare pacman offline system-update
+Documentation=https://github.com/eworm-de/pacman-offline#readme
 ConditionPathExists=!/var/lib/pacman/db.lck
+# Synchronizing databases needs network, see https://systemd.io/NETWORK_ONLINE/
+After=network-online.target
+Wants=network-online.target
 
 [Service]
 Type=oneshot
