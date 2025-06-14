@@ -8,6 +8,7 @@
 
 [Unit]
 Description=Offline system update with pacman - Reboot
+Documentation=https://github.com/eworm-de/pacman-offline#readme
 After=pacman-offline.service
 DefaultDependencies=no
 Conflicts=shutdown.target
