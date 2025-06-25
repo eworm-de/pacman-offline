@@ -8,7 +8,7 @@
 
 [Unit]
 Description=Offline system update with pacman - Poweroff
-Documentation=https://git.eworm.de/cgit/pacman-offline/about/
+Documentation=https://pacman-offline.eworm.de/
 After=pacman-offline.service
 DefaultDependencies=no
 Conflicts=shutdown.target
