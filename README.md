@@ -1,6 +1,10 @@
 pacman-offline
 ==============
 
+[![GitHub stars](https://img.shields.io/github/stars/eworm-de/pacman-offline?logo=GitHub&style=flat&color=red)](https://github.com/eworm-de/pacman-offline/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/eworm-de/pacman-offline?logo=GitHub&style=flat&color=green)](https://github.com/eworm-de/pacman-offline/network)
+[![GitHub watchers](https://img.shields.io/github/watchers/eworm-de/pacman-offline?logo=GitHub&style=flat&color=blue)](https://github.com/eworm-de/pacman-offline/watchers)
+
 **Run offline system update with pacman.**
 
 The offline system update with pacman is achieved by integrating into
