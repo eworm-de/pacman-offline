@@ -21,6 +21,7 @@ install-bin:
 	$(INSTALL) -D -m0755 bin/pacman-offline $(DESTDIR)/usr/bin/pacman-offline
 	$(INSTALL) -D -m0644 config/offline.conf $(DESTDIR)/etc/pacman.d/offline.conf
 	$(INSTALL) -D -m0644 config/offline-include.conf $(DESTDIR)/etc/pacman.d/offline-include.conf
+	$(INSTALL) -D -m0644 desktop/pacman-offline.desktop $(DESTDIR)/usr/share/applications/pacman-offline.desktop
 	$(INSTALL) -D -m0644 hook/99-pacman-offline.hook $(DESTDIR)/usr/share/libalpm/hooks/99-pacman-offline.hook
 	$(INSTALL) -D -m0644 polkit/pacman-offline.rules $(DESTDIR)/usr/share/polkit-1/rules.d/pacman-offline.rules
 	$(INSTALL) -D -m0644 systemd/pacman-offline.service $(DESTDIR)/usr/lib/systemd/system/pacman-offline.service

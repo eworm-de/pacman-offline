@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=pacman-offline
+GenericName=Offline System Update
+Comment=Download and prepare Offline System Update
+Icon=system-software-update
+Exec=sh -c 'pacman-offline -cy; echo Press ENTER to close.; read'
+Terminal=true
+Categories=System;PackageManager
+Keywords=system;PackageManager

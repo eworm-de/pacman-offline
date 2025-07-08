@@ -75,6 +75,11 @@ You can enable a timer for nightly reboot:
 
 This will trigger at night, if updates are pending and prepared.
 
+### Desktop environment
+
+A *desktop file* is installed to allow preparing from a desktop
+environment. Have a look at your application menu...
+
 Configuration
 -------------
 
