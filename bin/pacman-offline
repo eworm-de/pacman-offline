@@ -117,7 +117,7 @@ rm -f /system-update
 
 # check for available updates
 if [ "$(pacman --config /run/pacman.conf --sync --sysupgrade --print | wc -l)" -eq 0 ]; then
-	echo "No updates available."
+	echo 'No updates available.'
 	exit 0
 fi
 
