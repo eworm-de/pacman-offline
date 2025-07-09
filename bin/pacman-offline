@@ -10,16 +10,18 @@
 set -e
 
 function help() {
-	echo "usage: ${0} [OPTIONS]"
-	echo
-	echo ' -a  abort pending system-update'
-	echo ' -c  clean before download'
-	echo ' -f  force if other system-update is pending'
-	echo ' -h  this help'
-	echo ' -p  reboot, install and poweroff immediately'
-	echo ' -r  reboot and install immediately'
-	echo ' -t  start timer for nightly reboot'
-	echo ' -y  update sync databases'
+	cat <<-EOM
+	usage: ${0} [OPTIONS]
+
+	 -a  abort pending system-update
+	 -c  clean before download
+	 -f  force if other system-update is pending
+	 -h  this help
+	 -p  reboot, install and poweroff immediately
+	 -r  reboot and install immediately
+	 -t  start timer for nightly reboot
+	 -y  update sync databases
+	EOM
 }
 
 CLEAN=0
