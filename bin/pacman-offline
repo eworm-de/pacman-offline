@@ -157,6 +157,8 @@ if [ ${REBOOT} -eq 1 ]; then
 	exec systemctl reboot
 fi
 
+echo 'Updates will be installed on next reboot.'
+
 # start timer if requested
 if [ ${TIMER} -eq 1 ]; then
 	systemctl start pacman-offline-reboot.timer
