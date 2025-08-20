@@ -30,6 +30,12 @@ rm --force \
 # ... and reload
 systemctl daemon-reload
 
+# check battery level
+if ! /usr/lib/systemd/systemd-battery-check; then
+	echo 'Battery level is too low!' >&2
+	exit 1
+fi
+
 # exclude /etc/pacman.d/offline.conf
 function finish { rm -f /run/pacman.conf; }
 trap finish EXIT
