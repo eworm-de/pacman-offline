@@ -7,7 +7,8 @@ SED	:= sed
 
 # this is just a fallback in case you do not
 # use git but downloaded a release tarball...
-VERSION := 0.3.8
+DISTVER := 0.3.8
+VERSION ?= $(shell git describe --long 2>/dev/null || echo $(DISTVER))
 
 all: README.html
 
@@ -42,6 +43,6 @@ clean:
 	$(RM) -f README.html
 
 release:
-	git archive --format=tar.xz --prefix=pacman-offline-$(VERSION)/ $(VERSION) > pacman-offline-$(VERSION).tar.xz
-	gpg --armor --detach-sign --comment pacman-offline-$(VERSION).tar.xz pacman-offline-$(VERSION).tar.xz
-	git notes --ref=refs/notes/signatures/tar add -C $$(git archive --format=tar --prefix=pacman-offline-$(VERSION)/ $(VERSION) | gpg --armor --detach-sign --comment pacman-offline-$(VERSION).tar | git hash-object -w --stdin) $(VERSION)
+	git archive --format=tar.xz --prefix=pacman-offline-$(DISTVER)/ $(DISTVER) > pacman-offline-$(DISTVER).tar.xz
+	gpg --armor --detach-sign --comment pacman-offline-$(DISTVER).tar.xz pacman-offline-$(DISTVER).tar.xz
+	git notes --ref=refs/notes/signatures/tar add -C $$(git archive --format=tar --prefix=pacman-offline-$(DISTVER)/ $(DISTVER) | gpg --armor --detach-sign --comment pacman-offline-$(DISTVER).tar | git hash-object -w --stdin) $(DISTVER)
