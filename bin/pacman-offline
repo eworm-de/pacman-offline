@@ -131,6 +131,10 @@ fi
 # download packages
 pacman --config /run/pacman.conf --sync --noconfirm --sysupgrade --downloadonly
 
+# delete lost directories in cache
+# https://gitlab.archlinux.org/pacman/pacman/-/issues/297
+find /var/cache/pacman/pkg/ -mindepth 1 -type d -name 'download-??????' -empty -delete
+
 # enable system update
 ln -sf /var/cache/pacman/pkg /system-update
 if [ ${POWEROFF} -eq 1 ]; then
