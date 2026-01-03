@@ -54,9 +54,6 @@ pacman --config /run/pacman.conf --sync --noconfirm --sysupgrade
 rm -f /run/pacman.conf
 trap - EXIT
 
-# clean up package cache
-pacman --sync --noconfirm --clean
-
 # sync the storage
 sync
 
