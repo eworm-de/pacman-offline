@@ -27,6 +27,8 @@ install-bin:
 	$(INSTALL) -D -m0644 polkit/pacman-offline.rules $(DESTDIR)/usr/share/polkit-1/rules.d/pacman-offline.rules
 	$(INSTALL) -D -m0644 systemd/pacman-offline.service $(DESTDIR)/usr/lib/systemd/system/pacman-offline.service
 	$(INSTALL) -D -m0755 systemd/pacman-offline $(DESTDIR)/usr/lib/systemd/scripts/pacman-offline
+	$(INSTALL) -D -m0644 systemd/pacman-offline-clean-prepare.service $(DESTDIR)/usr/lib/systemd/system/pacman-offline-clean-prepare.service
+	$(INSTALL) -D -m0644 systemd/pacman-offline-clean-prepare.timer $(DESTDIR)/usr/lib/systemd/system/pacman-offline-clean-prepare.timer
 	$(INSTALL) -D -m0644 systemd/pacman-offline-done-poweroff.service $(DESTDIR)/usr/lib/systemd/system/pacman-offline-done-poweroff.service
 	$(INSTALL) -D -m0644 systemd/pacman-offline-done-reboot.service $(DESTDIR)/usr/lib/systemd/system/pacman-offline-done-reboot.service
 	$(INSTALL) -D -m0644 systemd/pacman-offline-prepare.service $(DESTDIR)/usr/lib/systemd/system/pacman-offline-prepare.service

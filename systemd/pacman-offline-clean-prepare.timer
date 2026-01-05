@@ -1,0 +1,18 @@
+# (C) 2017-2026 by Christian Hesse <mail@eworm.de>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+[Unit]
+Description=Clean cache and prepare pacman offline system-update
+Documentation=https://pacman-offline.eworm.de/
+
+[Timer]
+OnBootSec=5min
+OnCalendar=02:00:00
+RandomizedDelaySec=45minutes
+
+[Install]
+WantedBy=timers.target

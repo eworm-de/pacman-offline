@@ -1,0 +1,23 @@
+# (C) 2017-2026 by Christian Hesse <mail@eworm.de>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+[Unit]
+Description=Clean cache and prepare pacman offline system-update
+Documentation=https://pacman-offline.eworm.de/
+ConditionPathExists=!/var/lib/pacman/db.lck
+# Synchronizing databases needs network, see https://systemd.io/NETWORK_ONLINE/
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/pacman-offline -cy
+KillSignal=SIGINT
+ProtectSystem=on
+ProtectHome=on
+PrivateDevices=on
+NoNewPrivileges=on

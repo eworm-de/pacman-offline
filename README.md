@@ -67,6 +67,10 @@ This will trigger several minutes after boot, then ever day. The databases
 are synced, then packages are downloaded. The updates are installed when
 ever the system reboots.
 
+Alternatively use a timer that includes to clean the cache:
+
+    systemctl enable pacman-offline-clean-prepare.timer
+
 ### Timer for nightly reboot
 
 You can enable a timer for nightly reboot:
